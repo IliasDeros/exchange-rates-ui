@@ -1,0 +1,5 @@
+node_modules/
+
+# Parcel build artifacts
+.parcel-cache/
+dist/
