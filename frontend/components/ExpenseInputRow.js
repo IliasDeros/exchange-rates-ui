@@ -38,7 +38,7 @@ export function ExpenseInputRow({ submitExpense }) {
         </div>
       </td>
       <td>
-        <span className="light">0.00</span>
+        <span className="light">{draftExpense.valueCAD}</span>
       </td>
     </tr>
   )

@@ -11,7 +11,16 @@ export function App() {
   const addExpense = (expense) => {
     setExpenses([...expenses, expense])
     return true // Success!
-}
+  }
 
-  return <Report addExpense={addExpense} expenses={expenses} />;
+  const logReport = () => {
+    console.log(expenses)
+  }
+
+  return (
+    <div>
+      <button className="button is-primary" onClick={logReport}>Submit Report</button>
+      <Report addExpense={addExpense} expenses={expenses} />
+    </div>
+  )
 }
