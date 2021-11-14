@@ -1,12 +1,19 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { exchangeRatesAPI } from '../modules/exchangeRatesAPI'
 import { CurrencySelect } from "./CurrencySelect"
 
-const currencies = [
+const cadCurrencies = [
   { value: 'CAD', label: 'CAD' }
 ]
 
 export function ExpenseInputRow({ submitExpense }) {
   const [draftExpense, setDraftExpense] = useState({ description: "", value: "", valueCAD: 0 })
+  const [currencies, setCurrencies] = useState(cadCurrencies)
+
+  useEffect(async () => {
+    const currencies = await exchangeRatesAPI.getCurrencies()
+    setCurrencies(currencies.map(currency => ({ value: currency, label: currency })))
+  }, [])
 
   const isExpenseValid = draftExpense.description && draftExpense.valueCAD
   const setDescription = (e) => setDraftExpense({ ...draftExpense, description: e.target.value })
